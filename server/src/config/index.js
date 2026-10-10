@@ -11,7 +11,9 @@ const config = {
   openaiApiKey: process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY.trim() : '',
   enableCloudAi: process.env.ENABLE_CLOUD_AI === 'true',
   maxFileSizeMB: parseInt(process.env.MAX_FILE_SIZE_MB || '15', 10),
-  uploadDir: path.resolve(__dirname, '../../uploads'),
+  uploadDir: process.env.VERCEL
+    ? path.join(require('os').tmpdir(), 'careatlas-uploads')
+    : path.resolve(__dirname, '../../uploads'),
   allowedMimeTypes: [
     'application/pdf',
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document',

@@ -10,8 +10,12 @@ const apiRoutes = require('./routes/api');
 const app = express();
 
 // Ensure uploads directory exists
-if (!fs.existsSync(config.uploadDir)) {
-  fs.mkdirSync(config.uploadDir, { recursive: true });
+try {
+  if (!fs.existsSync(config.uploadDir)) {
+    fs.mkdirSync(config.uploadDir, { recursive: true });
+  }
+} catch (e) {
+  console.warn('⚠️ Could not create upload directory:', e.message);
 }
 
 // Security & Logging Middlewares
@@ -20,6 +24,24 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(privacyMorgan);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+
+// Ensure DB connection is established for serverless / function invocations
+let dbInitPromise = null;
+function ensureDb() {
+  if (!dbInitPromise) {
+    dbInitPromise = connectDB();
+  }
+  return dbInitPromise;
+}
+
+app.use(async (req, res, next) => {
+  try {
+    await ensureDb();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Apply rate limiting to /api routes
 app.use('/api', apiLimiter);
@@ -56,7 +78,7 @@ app.use(errorHandler);
 
 // Start server
 async function startServer() {
-  await connectDB();
+  await ensureDb();
 
   const server = app.listen(config.port, () => {
     const dbStatus = getDatabaseStatus();
@@ -76,4 +98,6 @@ if (require.main === module) {
   startServer();
 }
 
-module.exports = { app, startServer };
+module.exports = app;
+module.exports.app = app;
+module.exports.startServer = startServer;
