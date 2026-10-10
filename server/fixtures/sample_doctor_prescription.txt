@@ -1,0 +1,27 @@
+========================================================================
+METRO HEALTH CLINIC - OUTPATIENT PRESCRIPTION ORDER
+SYNTHETIC DEMONSTRATION DOCUMENT
+========================================================================
+Patient: Eleanor Vance
+Date of Birth: 04/12/1967
+Patient ID: P-101
+Prescription Date: October 01, 2026
+Prescribing Physician: Dr. Sarah Jenkins, MD (License # 771239)
+Clinic Address: 450 Health Way, Suite 300
+
+MEDICATIONS:
+1. Metformin Hydrochloride
+   Strength: 500 mg oral tablet
+   Directions: Take 1 tablet twice daily with food
+   Quantity: 180 tablets
+   Refills: 2
+
+2. Lisinopril
+   Strength: 10 mg oral tablet
+   Directions: Take 1 tablet once daily each morning
+   Quantity: 90 tablets
+   Refills: 2
+
+Doctor Signature: Dr. Sarah Jenkins, MD
+Signed on: October 01, 2026 11:20 AM
+========================================================================

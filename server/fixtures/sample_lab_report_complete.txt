@@ -1,0 +1,29 @@
+========================================================================
+SUNSHINE REGIONAL MEDICAL LABORATORY
+CLINICAL PATHOLOGY REPORT - SYNTHETIC DEMO RECORD
+========================================================================
+Patient Name: Eleanor Vance            Sex: Female
+DOB: 12/04/1967                        Patient Synthetic ID: P-101
+Ordering Physician: Dr. Sarah Jenkins, MD
+Specimen Type: Venous Blood            Encounter ID: ENC-2026-9912
+
+Specimen Collection Date: 2026-09-18 07:30 AM
+Report Date: 2026-09-18 13:45 PM
+========================================================================
+TEST DESCRIPTION              RESULT       REFERENCE RANGE    UNITS
+------------------------------------------------------------------------
+Fasting Blood Glucose         112          70 - 99            mg/dL
+Hemoglobin A1c (HbA1c)        6.4          4.0 - 5.6          %
+Blood Pressure                124/82       < 120/80           mmHg
+Total Cholesterol             185          < 200              mg/dL
+LDL Cholesterol               108          < 100              mg/dL
+HDL Cholesterol               48           > 50               mg/dL
+Serum Creatinine              0.90         0.50 - 1.10        mg/dL
+TSH                           2.45         0.40 - 4.50        mIU/L
+Hemoglobin                    14.1         12.0 - 15.5        g/dL
+Vitamin D (25-OH)             32           30 - 100           ng/mL
+
+CLINICAL NOTES:
+Patient exhibits steady glycemic management compared to prior quarters.
+Continue current diet and medication therapy.
+========================================================================
