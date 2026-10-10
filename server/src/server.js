@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
+const path = require('path');
 const config = require('./config');
 const { connectDB, getDatabaseStatus } = require('./database/db');
 const { helmetConfig, privacyMorgan, apiLimiter, errorHandler } = require('./middleware/security');
@@ -27,16 +28,28 @@ app.use('/api', apiLimiter);
 app.use('/api', apiRoutes);
 app.use(apiRoutes);
 
-// Health check root
-app.get('/', (req, res) => {
-  res.json({
-    app: 'CareAtlas — Patient Health Copilot API',
-    status: 'online',
-    healthCheck: '/api/health',
-    version: '1.0.0',
-    disclaimer: 'Prototype demo only. All data is synthetic.',
+// Serve production Vite client build if present
+const clientDist = path.resolve(__dirname, '../../client/dist');
+if (fs.existsSync(clientDist)) {
+  app.use(express.static(clientDist));
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/api') || req.path.startsWith('/auth')) {
+      return next();
+    }
+    res.sendFile(path.resolve(clientDist, 'index.html'));
   });
-});
+} else {
+  // Health check root fallback if client build not generated
+  app.get('/', (req, res) => {
+    res.json({
+      app: 'CareAtlas — Patient Health Copilot API',
+      status: 'online',
+      healthCheck: '/api/health',
+      version: '1.0.0',
+      disclaimer: 'Prototype demo only. All data is synthetic.',
+    });
+  });
+}
 
 // Centralized error handling
 app.use(errorHandler);

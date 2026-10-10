@@ -4,13 +4,13 @@
   "description": "CareAtlas - Patient Health Copilot (MERN MVP)",
   "private": true,
   "scripts": {
-    "install:all": "npm.cmd --prefix server install && npm.cmd --prefix client install",
-    "dev:server": "npm.cmd --prefix server run dev",
-    "dev:client": "npm.cmd --prefix client run dev",
+    "install:all": "npm --prefix server install && npm --prefix client install",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
     "dev": "node scripts/dev.js",
     "start": "node server/src/server.js",
-    "build": "npm.cmd --prefix client run build",
-    "test": "npm.cmd --prefix server test"
+    "build": "npm --prefix server install && npm --prefix client install && npm --prefix client run build",
+    "test": "npm --prefix server test"
   },
   "keywords": [
     "mern",
